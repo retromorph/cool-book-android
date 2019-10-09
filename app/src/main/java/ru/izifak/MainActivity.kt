@@ -1,6 +1,5 @@
 package ru.izifak
 
-import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,14 +18,8 @@ import ru.izifak.core.helper.SimpleItemTouchHelperCallback
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.FragmentActivity
 import android.content.Intent
-import android.widget.Toast
-import kotlin.random.Random
 import android.media.MediaPlayer
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
-
+import android.widget.Toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,13 +33,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
+
         textTitleToolbar.typeface = Typeface.createFromAsset(assets, "font/Activist.ttf")
+        mainNoAudioBooksText.typeface = Typeface.createFromAsset(assets, "font/Activist.ttf")
 
         mainAudioRec.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         val adapter = AudioRecAdapter(
             arrayListOf(
-                AudioBook("lolkek", 123123, ""),
-                AudioBook("lolkek2", 123123, "")
+//                AudioBook("lolkek", 123123, "", ""),
+//                AudioBook("lolkek2", 123123, "", "")
             ),
             this
         )
@@ -84,6 +79,8 @@ class AudioRecAdapter(private val books: ArrayList<AudioBook>, private val fa: F
 
     private var lastPos = -1
 
+    private var elements = 3
+
     override fun onItemDismiss(position: Int) {
         books.removeAt(position)
         notifyItemRemoved(position)
@@ -101,7 +98,7 @@ class AudioRecAdapter(private val books: ArrayList<AudioBook>, private val fa: F
     }
 
     override fun getItemCount(): Int {
-        return books.size
+        return elements
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -109,8 +106,15 @@ class AudioRecAdapter(private val books: ArrayList<AudioBook>, private val fa: F
         Thread {
             Thread.sleep(3000)
             fa.runOnUiThread {
-                holder.itemView.textTitleAudioItem.text = books[position].name
-                holder.itemView.imgAudioItem.setImageDrawable(fa.getDrawable(R.drawable.main_icon))
+                elements = books.size
+                if(position < elements) {
+                    holder.itemView.textTitleAudioItem.text = books[position].name
+                    holder.itemView.imgAudioItem.setImageDrawable(fa.getDrawable(R.drawable.main_icon))
+                }
+                if (books.size == 0){
+                    fa.mainAudioRec.visibility = View.GONE
+                    fa.mainNoAudioBooks.visibility = View.VISIBLE
+                }
             }
         }.start()
         holder.itemView.root.setOnClickListener {

@@ -46,17 +46,6 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:srcCompat="@drawable/ic_add_black_24dp"
-            android:id="@+id/addAudioFab"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -68,6 +57,49 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                       android:layout_height="match_parent"
+                                                       android:id="@+id/mainNoAudioBooks"
+                                                       android:visibility="gone"
+                                                       app:layout_constraintTop_toTopOf="@+id/mainAudioRec"
+                                                       app:layout_constraintEnd_toEndOf="parent"
+                                                       app:layout_constraintStart_toStartOf="parent"
+                                                       android:layout_marginStart="8dp"
+                                                       android:layout_marginBottom="8dp"
+                                                       app:layout_constraintBottom_toBottomOf="@+id/mainAudioRec">
+
+        <ImageView
+                android:layout_width="240dp"
+                android:layout_height="40dp" app:srcCompat="@drawable/icon_undertext"
+                android:id="@+id/imageView"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/mainNoAudioBooksText" app:layout_constraintEnd_toEndOf="@+id/mainNoAudioBooksText"
+                app:layout_constraintStart_toStartOf="@+id/mainNoAudioBooksText"/>
+
+        <TextView
+                android:text="No audio books in your list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTitle"
+                android:textSize="22sp"
+                android:id="@+id/mainNoAudioBooksText" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            android:id="@+id/addAudioFab"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
     <!--<androidx.appcompat.widget.Toolbar-->
