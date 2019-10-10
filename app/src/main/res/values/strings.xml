@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CoolBook</string>
+    <string name="add_audio_book">Add audio book</string>
+    <string name="add_audio_book_pos_button">Ok</string>
 </resources>

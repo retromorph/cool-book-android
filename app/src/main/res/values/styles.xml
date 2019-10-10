@@ -11,6 +11,8 @@
     <style name="AppTheme.NoActionBar">
         <item name="colorPrimary">@color/colorPrimaryLight</item>
         <item name="colorPrimaryDark">@color/colorPrimaryLight</item>
+        <item name="colorBackgroundFloating">@color/colorPrimary</item>
+        <item name="md_color_button_text">@color/colorText</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
